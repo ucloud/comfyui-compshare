@@ -2,7 +2,7 @@ from .modelverse_api.utils import imageurl2tensor
 from .modelverse_api.client import ModelverseClient
 from .modelverse_api.requests.step1x_edit import Step1xEdit
 import torch
-import asyncio
+from comfy.comfy_types.node_typing import IO
 
 
 class Step1xEditNode:
@@ -17,10 +17,10 @@ class Step1xEditNode:
         return {
             "required": {
                 "client": ("MODELVERSE_API_CLIENT",),
-                "prompt": ("STRING", {"multiline": True, "default": "", "tooltip": "The prompt to guide the image edit."}),
-                "negative_prompt": ("STRING", {"multiline": True, "default": "", "tooltip": "The negative prompt to use."}),
-                "image": ("IMAGE", {"default": None, "tooltip": "The image to be edited."}),
-                "num_requests": ("INT", {
+                "prompt": (IO.STRING, {"multiline": True, "default": "", "tooltip": "The prompt to guide the image edit."}),
+                "negative_prompt": (IO.STRING, {"multiline": True, "default": "", "tooltip": "The negative prompt to use."}),
+                "image": (IO.IMAGE, {"default": None, "tooltip": "The image to be edited."}),
+                "num_requests": (IO.INT, {
                     "default": 1,
                     "min": 1,
                     "max": 10,
@@ -28,14 +28,14 @@ class Step1xEditNode:
                     "display": "number",
                     "tooltip": "Number of request to make (1 to 10)"
                 }),
-                "seed": ("INT", {
+                "seed": (IO.INT, {
                     "default": -1,
                     "min": -1,
                     "max": 0xffffffffffffffff,
                     "control_after_generate": True,
                     "tooltip": "Random seed for reproducible results. -1 for random seed"
                 }),
-                "num_inference_steps": ("INT", {
+                "num_inference_steps": (IO.INT, {
                     "default": 30,
                     "min": 1,
                     "max": 50,
@@ -43,7 +43,7 @@ class Step1xEditNode:
                     "display": "number",
                     "tooltip": "Number of inference steps (1 to 50)"
                 }),
-                "guidance_scale": ("FLOAT", {
+                "guidance_scale": (IO.FLOAT, {
                     "default": 4.0,
                     "min": 0.0,
                     "max": 20.0,
@@ -54,7 +54,7 @@ class Step1xEditNode:
             },
         }
 
-    RETURN_TYPES = ("IMAGE", )
+    RETURN_TYPES = (IO.IMAGE, )
     RETURN_NAMES = ("image", )
 
     CATEGORY = "UCLOUD_MODELVERSE"

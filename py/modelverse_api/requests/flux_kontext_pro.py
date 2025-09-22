@@ -8,6 +8,7 @@ class FluxKontextPro(BaseRequest):
     """
     Flux Kontext Pro for image editing.
     """
+    API_PATH = "/v1/images/generations"
     prompt: str = Field(...,
                         description="The prompt to generate an image from.")
     image: Tensor = Field(...,
@@ -61,6 +62,7 @@ class FluxKontextProMulti(BaseRequest):
     """
     Flux Kontext Pro for multiple image inputs.
     """
+    API_PATH = "/v1/images/generations"
     prompt: str = Field(...,
                         description="The prompt to generate an image from.")
     images: list[Tensor] = Field(...,
@@ -113,6 +115,7 @@ class FluxKontextProT2I(BaseRequest):
     """
     Flux Kontext Pro text-to-image model
     """
+    API_PATH = "/v1/images/generations"
     prompt: str = Field(...,
                         description="The prompt to generate an image from.")
     aspect_ratio: Optional[str] = Field(

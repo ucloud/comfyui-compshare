@@ -8,6 +8,7 @@ class FluxDev(BaseRequest):
     """
     Flux-dev text to image model, 12 billion parameter rectified flow transformer
     """
+    API_PATH = "/v1/images/generations"
     guidance_scale: Optional[float] = Field(
         default=2.5, description="The CFG (Classifier Free Guidance) scale is a measure of how close you want the model to stick to your prompt when looking for a related image to show you.")
     num_images: Optional[int] = Field(
