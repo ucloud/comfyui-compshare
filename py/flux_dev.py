@@ -2,7 +2,7 @@ from .modelverse_api.utils import imageurl2tensor
 from .modelverse_api.client import ModelverseClient
 from .modelverse_api.requests.flux_dev import FluxDev
 import torch
-import asyncio
+from comfy.comfy_types.node_typing import IO
 
 
 class FluxDevNode:
@@ -17,8 +17,8 @@ class FluxDevNode:
         return {
             "required": {
                 "client": ("MODELVERSE_API_CLIENT",),
-                "prompt": ("STRING", {"multiline": True, "default": "", "tooltip": "Text description of the image to generate"}),
-                "width": ("INT", {
+                "prompt": (IO.STRING, {"multiline": True, "default": "", "tooltip": "Text description of the image to generate"}),
+                "width": (IO.INT, {
                     "default": 1024,
                     "min": 512,
                     "max": 1536,
@@ -26,7 +26,7 @@ class FluxDevNode:
                     "display": "number",
                     "tooltip": "Image width (512 to 1536)"
                 }),
-                "height": ("INT", {
+                "height": (IO.INT, {
                     "default": 1024,
                     "min": 512,
                     "max": 1536,
@@ -34,7 +34,7 @@ class FluxDevNode:
                     "display": "number",
                     "tooltip": "Image height (512 to 1536)"
                 }),
-                "strength": ("FLOAT", {
+                "strength": (IO.FLOAT, {
                     "default": 0.8,
                     "min": 0.01,
                     "max": 1.0,
@@ -42,14 +42,14 @@ class FluxDevNode:
                     "display": "number",
                     "tooltip": "Strength of the image-to-image transformation (0.01 to 1.0)"
                 }),
-                "seed": ("INT", {
+                "seed": (IO.INT, {
                     "default": -1,
                     "min": -1,
                     "max": 0xffffffffffffffff,
                     "control_after_generate": True,
                     "tooltip": "Random seed for reproducible results. -1 for random seed"
                 }),
-                "num_images": ("INT", {
+                "num_images": (IO.INT, {
                     "default": 1,
                     "min": 1,
                     "max": 4,
@@ -57,7 +57,7 @@ class FluxDevNode:
                     "display": "number",
                     "tooltip": "Number of images to generate in a single request (1 to 4)"
                 }),
-                "num_requests": ("INT", {
+                "num_requests": (IO.INT, {
                     "default": 1,
                     "min": 1,
                     "max": 10,
@@ -65,7 +65,7 @@ class FluxDevNode:
                     "display": "number",
                     "tooltip": "Number of request to make (1 to 10)"
                 }),
-                "num_inference_steps": ("INT", {
+                "num_inference_steps": (IO.INT, {
                     "default": 28,
                     "min": 1,
                     "max": 50,
@@ -73,7 +73,7 @@ class FluxDevNode:
                     "display": "number",
                     "tooltip": "Number of inference steps (1 to 50)"
                 }),
-                "guidance_scale": ("FLOAT", {
+                "guidance_scale": (IO.FLOAT, {
                     "default": 3.5,
                     "min": 0.0,
                     "max": 10.0,
@@ -83,7 +83,7 @@ class FluxDevNode:
                 }),
             },
             "optional": {
-                "image": ("IMAGE", {
+                "image": (IO.IMAGE, {
                     "tooltip": "The image for reference.",
                     "forceInput": False,
                     "default": None

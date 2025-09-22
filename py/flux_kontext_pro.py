@@ -2,7 +2,7 @@ from .modelverse_api.utils import imageurl2tensor
 from .modelverse_api.client import ModelverseClient
 from .modelverse_api.requests.flux_kontext_pro import FluxKontextPro, FluxKontextProMulti
 import torch
-import asyncio
+from comfy.comfy_types.node_typing import IO
 
 
 class FluxKontextProNode:
@@ -21,13 +21,13 @@ class FluxKontextProNode:
         return {
             "required": {
                 "client": ("MODELVERSE_API_CLIENT",),
-                "prompt": ("STRING", {"multiline": True, "default": "", "tooltip": "Text description of the image to generate"}),
-                "images": ("IMAGE,IMAGE_LIST", {
+                "prompt": (IO.STRING, {"multiline": True, "default": "", "tooltip": "Text description of the image to generate"}),
+                "images": ("IMAGE_LIST", {
                     "tooltip": "The image(s) to edit from. If not included, use text-to-image mode.",
                     "forceInput": False,
                     "default": None
                 }),
-                "num_requests": ("INT", {
+                "num_requests": (IO.INT, {
                     "default": 1,
                     "min": 1,
                     "max": 10,
@@ -35,14 +35,14 @@ class FluxKontextProNode:
                     "display": "number",
                     "tooltip": "Number of request to make (1 to 10)"
                 }),
-                "seed": ("INT", {
+                "seed": (IO.INT, {
                     "default": -1,
                     "min": -1,
                     "max": 0xffffffffffffffff,
                     "control_after_generate": True,
                     "tooltip": "Random seed for reproducible results. -1 for random seed"
                 }),
-                "guidance_scale": ("FLOAT", {
+                "guidance_scale": (IO.FLOAT, {
                     "default": 2.5,
                     "min": 0.0,
                     "max": 10.0,

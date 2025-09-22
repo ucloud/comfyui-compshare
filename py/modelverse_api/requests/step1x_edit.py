@@ -11,6 +11,7 @@ class Step1xEdit(BaseRequest):
 
     Step1X-Edit transforms your photos with simple instructions into stunning, professional-quality edits—rivaling top proprietary tools.
     """
+    API_PATH = "/v1/images/generations"
     prompt: str = Field(...,
                         description="The prompt to generate an image from.")
     image: Tensor = Field(

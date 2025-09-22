@@ -1,5 +1,6 @@
 import os
 import configparser
+from comfy.comfy_types.node_typing import IO
 
 try:
     current_dir = os.path.dirname(os.path.abspath(__file__))
@@ -89,13 +90,13 @@ class ModelverseImagePacker:
     def INPUT_TYPES(s):
         return {
             "required": {
-                "images1": ("IMAGE,IMAGE_LIST", {"tooltip": "The first image/list to be packed together. Add more if you need."})
+                "images1": (IO.IMAGE, {"tooltip": "The first image/list to be packed together. Add more if you need."})
             },
             "optional": {
-                "images2": ("IMAGE,IMAGE_LIST", {"default": None, "tooltip": "The second image/list to be packed together."}),
-                "images3": ("IMAGE,IMAGE_LIST", {"default": None, "tooltip": "The third image/list to be packed together."}),
-                "images4": ("IMAGE,IMAGE_LIST", {"default": None, "tooltip": "The fourth image/list to be packed together."}),
-                "images5": ("IMAGE,IMAGE_LIST", {"default": None, "tooltip": "The fifth image/list to be packed together."})
+                "images2": (IO.IMAGE, {"default": None, "tooltip": "The second image/list to be packed together."}),
+                "images3": (IO.IMAGE, {"default": None, "tooltip": "The third image/list to be packed together."}),
+                "images4": (IO.IMAGE, {"default": None, "tooltip": "The fourth image/list to be packed together."}),
+                "images5": (IO.IMAGE, {"default": None, "tooltip": "The fifth image/list to be packed together."})
             }
         }
 

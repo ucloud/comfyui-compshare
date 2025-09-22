@@ -8,6 +8,7 @@ class FluxKontextMax(BaseRequest):
     """
     Flux Kontext Max for image editing.
     """
+    API_PATH = "/v1/images/generations"
     guidance_scale: Optional[float] = Field(
         default=2.5, description="The CFG (Classifier Free Guidance) scale is a measure of how close you want the model to stick to your prompt when looking for a related image to show you.")
     image: Tensor = Field(...,
@@ -60,6 +61,7 @@ class FluxKontextMaxMulti(BaseRequest):
     """
     Flux Kontext Max for multiple image inputs.
     """
+    API_PATH = "/v1/images/generations"
     guidance_scale: Optional[float] = Field(
         default=3.5, description="The CFG (Classifier Free Guidance) scale is a measure of how close you want the model to stick to your prompt when looking for a related image to show you.")
     images: list[Tensor] = Field(...,
@@ -112,6 +114,7 @@ class FluxKontextMaxT2I(BaseRequest):
     """
     Flux Kontext Pro text-to-image model
     """
+    API_PATH = "/v1/images/generations"
     prompt: str = Field(...,
                         description="The prompt to generate an image from.")
     aspect_ratio: Optional[str] = Field(
