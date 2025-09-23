@@ -4,7 +4,7 @@ description = """
 This is a custom node for ComfyUI that allows you to use the Compshare API directly in ComfyUI. Compshare is a high-performance AI inference platform providing powerful image generation models including popular text-to-image and image editing models without local GPU setup. [a/compshare docs](https://www.compshare.cn?ytag=comfyplug)
 
 优云智算的ComfyUI的自定义节点，可直接在ComfyUI中使用优云智算的生图API。优云智算是一个高性能的AI推理平台，提供强大的图像生成模型（文生图、图生图、图像编辑）和行业领先的推理速度，无需本地GPU设置即可使用。[a/优云智算官网](https://www.compshare.cn?ytag=comfyplug)"""
-version = "1.0.4"
+version = "1.0.5"
 license = {file = "LICENSE"}
 dependencies = ["requests", "pillow"]
 
